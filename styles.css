@@ -80,6 +80,100 @@ body {
   color: rgba(254, 243, 199, 0.9);
 }
 
+.connection-panel {
+  margin-bottom: 18px;
+  padding: 14px;
+  display: grid;
+  grid-template-columns: minmax(240px, 0.72fr) minmax(0, 1.28fr);
+  gap: 16px;
+  align-items: start;
+  animation: fade-up 680ms ease both;
+}
+
+.connection-copy h2 {
+  margin: 4px 0 8px;
+  font-size: 1.02rem;
+}
+
+.connection-label {
+  margin: 0;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.connection-status {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #334155;
+}
+
+.connection-status[data-state="connected"] {
+  color: var(--ok);
+}
+
+.connection-status[data-state="warning"] {
+  color: #9a3412;
+}
+
+.connection-status[data-state="error"] {
+  color: var(--bad);
+}
+
+.connection-controls {
+  display: grid;
+  gap: 10px;
+}
+
+.field {
+  display: grid;
+  gap: 5px;
+}
+
+.field span {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #475569;
+}
+
+.field input {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.82);
+  border-radius: 10px;
+  padding: 10px 11px;
+  font-size: 0.92rem;
+  color: #0f172a;
+}
+
+.field input:read-only {
+  color: #475569;
+}
+
+.connection-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.primary-btn {
+  border: 0;
+  border-radius: 10px;
+  padding: 9px 12px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.primary-btn:disabled,
+.ghost-btn:disabled {
+  opacity: 0.56;
+  cursor: wait;
+}
+
 .workspace {
   display: grid;
   grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.82fr);
@@ -462,6 +556,10 @@ rt {
 }
 
 @media (max-width: 1120px) {
+  .connection-panel {
+    grid-template-columns: 1fr;
+  }
+
   .workspace {
     grid-template-columns: 1fr;
   }
@@ -474,6 +572,10 @@ rt {
 @media (max-width: 620px) {
   .layout {
     padding: 22px 12px 30px;
+  }
+
+  .connection-actions {
+    flex-direction: column;
   }
 
   .toolbar {

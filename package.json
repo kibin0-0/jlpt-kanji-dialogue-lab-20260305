@@ -1,0 +1,10 @@
+{
+  "name": "jlpt-kanji-dialogue-lab",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "serve": "npx --yes serve .",
+    "serve:dist": "npx --yes serve dist"
+  }
+}

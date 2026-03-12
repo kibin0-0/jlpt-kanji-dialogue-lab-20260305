@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JLPT 漢字 Dialogue Lab</title>
+    <title>JLPT Kanji Dialogue Lab</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -17,11 +17,44 @@
     <main class="layout">
       <header class="hero">
         <p class="eyebrow">JLPT N1 / N2</p>
-        <h1>漢字 Dialogue Lab</h1>
+        <h1>Kanji Dialogue Lab</h1>
         <p class="subtitle">
-          상급 한자가 포함된 일본어 대화문을 읽고, 후리가나·번역·한자 풀이를 동시에 학습하세요.
+          일본어 한자 어휘를 대화로 익히고, 읽기와 번역, 퀴즈, 진도 체크까지 한 화면에서 학습할 수 있도록 구성했습니다.
         </p>
       </header>
+
+      <section class="connection-panel card" aria-labelledby="connectionTitle">
+        <div class="connection-copy">
+          <p class="connection-label">Supabase</p>
+          <h2 id="connectionTitle">프로젝트 연결</h2>
+          <p id="connectionStatus" class="connection-status" aria-live="polite">
+            연결 상태를 확인하는 중입니다.
+          </p>
+        </div>
+
+        <div class="connection-controls">
+          <label class="field">
+            <span>Project URL</span>
+            <input id="projectUrlInput" type="text" readonly />
+          </label>
+
+          <label class="field">
+            <span>Anon Key</span>
+            <input
+              id="anonKeyInput"
+              type="password"
+              placeholder="sb_publishable_... 또는 anon key"
+              autocomplete="off"
+            />
+          </label>
+
+          <div class="connection-actions">
+            <button type="button" id="connectBtn" class="primary-btn">키 저장</button>
+            <button type="button" id="reloadDbBtn" class="ghost-btn">DB 다시 읽기</button>
+            <button type="button" id="clearKeyBtn" class="ghost-btn">키 지우기</button>
+          </div>
+        </div>
+      </section>
 
       <section class="workspace">
         <section class="conversation-panel card">
@@ -31,14 +64,16 @@
               <button type="button" data-level="N2">N2</button>
               <button type="button" data-level="N1">N1</button>
             </div>
+
             <input
               id="searchInput"
               class="search-box"
               type="text"
-              placeholder="한자/단어 검색 (예: 施策, 検証)"
+              placeholder="장면, 단어, 뜻 검색 (예: 市場, 공급, しじょう)"
               aria-label="대화 검색"
             />
-            <button type="button" id="shuffleBtn" class="ghost-btn">랜덤 대화</button>
+
+            <button type="button" id="shuffleBtn" class="ghost-btn">랜덤 장면</button>
           </div>
 
           <div class="toggle-row">
@@ -52,15 +87,15 @@
         <aside class="study-panel">
           <section class="card stat-card">
             <h2>학습 현황</h2>
-            <p id="statSummary">데이터 로드 중...</p>
-            <div class="meter">
+            <p id="statSummary">데이터를 불러오는 중입니다.</p>
+            <div class="meter" aria-hidden="true">
               <div class="meter-fill" id="meterFill"></div>
             </div>
           </section>
 
           <section class="card kanji-card">
             <div class="card-head">
-              <h2>핵심 한자 사전</h2>
+              <h2>핵심 한자 단어</h2>
               <span id="kanjiCount">0개</span>
             </div>
             <div class="kanji-list" id="kanjiList"></div>
@@ -71,13 +106,14 @@
               <h2>미니 퀴즈</h2>
               <button type="button" id="newQuizBtn" class="ghost-btn">새 문제</button>
             </div>
-            <p class="quiz-question" id="quizQuestion">문제를 생성 중입니다...</p>
+            <p class="quiz-question" id="quizQuestion">문제를 준비하는 중입니다.</p>
             <div class="quiz-options" id="quizOptions"></div>
             <p class="quiz-feedback" id="quizFeedback"></p>
           </section>
         </aside>
       </section>
     </main>
-    <script src="./app.js" type="module"></script>
+    <script src="./config.js"></script>
+    <script src="./app.js"></script>
   </body>
 </html>
